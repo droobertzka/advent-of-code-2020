@@ -1,28 +1,55 @@
+-- Shared
+-- Note: all number pairs are in (x, y) order
 
 getUseableIndex n str =
     let strLen = length str
     in
         n - (n `div` strLen * strLen)
 
--- (x, y)
-slope = (3, 1)
 start = (0, 0)
 
 isHash x str =
     str!!(getUseableIndex x str) == '#'
 
-calcNumHashes (x, y) numHashes (slopeX, slopeY) strings =
+calcNumHashes (x, y) numHashes strings (slopeX, slopeY) =
     if y >= length strings
     then numHashes
     else
+        -- TODO: Why is this so sensitive to indentation? Why can't the
+        -- if go on the next line?
         let nextNumHashes = if isHash x (strings!!y)
             then numHashes + 1
             else numHashes
-        in calcNumHashes (x + slopeX, y + slopeY) nextNumHashes (slopeX, slopeY) strings
+        in calcNumHashes (x + slopeX, y + slopeY) nextNumHashes strings (slopeX, slopeY)
 
-partOne = calcNumHashes start 0 slope
+-- Part 1
 
--- length = 323
+partOneSlope = (3, 1)
+
+partOne strings =
+    calcNumHashes start 0 strings partOneSlope
+
+
+-- Part 2
+
+-- TODO: why did we have to add this type sig here, but not anywhere else
+-- that we are using a tuple with 2 Ints?
+
+partTwoSlopes :: [(Int, Int)]
+partTwoSlopes =
+    [ (1, 1)
+    , (3, 1)
+    , (5, 1)
+    , (7, 1)
+    , (1, 2)
+    ]
+
+partTwo slopes strings =
+    foldl (*) 1 $ map (calcNumHashes start 0 strings) slopes
+
+
+-- Input
+
 inputs =
     [ "........#....#..##..#...#.....#"
     , "...............#....##........#"
