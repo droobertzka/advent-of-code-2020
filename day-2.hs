@@ -1,12 +1,15 @@
 import Data.List
 
+
+-- Part One
+
 hasMinChars min char =
 	(>= min) . length . filter (== char)
 
 hasMaxChars max char =
 	(<= max) . length . filter (== char)
 
-isValid (min, max, char, pw) =
+isValidPartOne (min, max, char, pw) =
 	let conditions =
 		[ hasMinChars min char pw
 		, hasMaxChars max char pw
@@ -15,8 +18,28 @@ isValid (min, max, char, pw) =
 		null $ filter (== False) conditions
 
 partOne ps =
-	length $ filter (== True) $ map isValid ps
+	length $ filter (== True) $ map isValidPartOne ps
 
+
+-- Part Two
+
+hasCharAtIndex i char = (== char) . (!! (i - 1))
+
+isValidPartTwo (i, j, char, pw) =
+    let isAtFirstIndex = hasCharAtIndex i char pw
+        isAtSecondIndex = hasCharAtIndex j char pw
+    in
+        if isAtFirstIndex
+        then
+            not isAtSecondIndex
+        else
+            isAtSecondIndex
+
+partTwo ps =
+    length $ filter (== True) $ map isValidPartTwo ps
+
+
+-- Input
 
 inputs :: [(Int, Int, Char, [Char])]
 inputs =
@@ -24,22 +47,22 @@ inputs =
 	, (7, 8, 'k', "kkkkkkkf")
 	, (4, 6, 'k', "gqjkkk")
 	, (1, 2, 't', "rttb")
-	, (7, 10, 'z', "gzjtmtcrzv")
+	, (7, 10, 'z', "gzjtmtcrzv") -- fails
 	, (5, 13, 'g', "cgbmglsdwwlhqk")
 	, (7, 8, 't', "ttttttttt")
-	, (3, 4, 'd', "xnbx")
+	, (3, 4, 'd', "xnbx") -- fails
 	, (3, 5, 'n', "nznnnnf")
 	, (7, 10, 'q', "kqhcqqqqqqqqn")
-	, (11, 12, 'c', "qccccccccczk")
+	, (11, 12, 'c', "qccccccccczk") -- fails
 	, (5, 6, 'm', "mmkmmm")
-	, (3, 4, 'm', "mmll")
+	, (3, 4, 'm', "mmll") -- fails
 	, (9, 11, 'p', "pppppppprpppppp"),
 	(5, 9, 'j', "jbljjjjjjljj"),
 	(9, 14, 'r', "rrrrrrkrrrcrrrr"),
 	(1, 9, 'f', "fxtgcfqncz"),
 	(2, 5, 'c', "jcgcj"),
 	(11, 14, 'b', "bbbbbbbbbbbbbbb"),
-	(5, 6, 'w', "wwwwnm"),
+	(5, 6, 'w', "wwwwnm"), -- fails
 	(1, 9, 's', "pcjjshfjsqksfkwrzpc"),
 	(9, 12, 'z', "zzzzzlzzmszvz"),
 	(3, 6, 'd', "ltfddb"),
