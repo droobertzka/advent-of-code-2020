@@ -33,6 +33,9 @@ who knows what other TIL moments we'll have along the way; but this is what
 it's all about, so let's keep a running list. This list contains TIL moments
 for viewers as well as myself because every TIL is worth noting!
 
+_Note: The list of TILs is organized by the day we worked on it, not days of the Advent of Code._
+
+### Day One
 * using infix operators as functions preserves their argument order, while
   applying one argument via parens allows you to apply that argument to either
 side
@@ -53,8 +56,28 @@ side
 	* also, include the outer chars with `va<char>`
 * we can get zsh-like shell history search functionality via `ctrl + r`
 
+### Day Two
+* the `do` keyword from `System.IO` escapes us into being able to make several statements in
+  a block, but then requires a `return` statement and wraps the return value in an `IO` (we think)
+* leftward skinny arrow `<-` can be used in `do` blocks to bind the value in a Monad to a variable
+	* there are [differences between this and `let`](https://discourse.haskell.org/t/difference-between-let-and/1119)
+* Haskell is even more picky about whitespace than we thought:
+	* sometimes `let varName =` assignments cannot have the value on the next line
+	* some lines wouldn't compile until we switched from tabs to spaces
+* when reading in files, whitespace and extra blank lines are a big deal
+* concatenating two lists in Haskell performs type casting (at least if one list is explicitly typed)
+* fat arrow `=>` in a type signature denotes the bound context
+	* e.g.: `:t read --> read :: Read a => String -> a`
+* `read` takes one argument but then needs to be bound to a type via `::`
+	* e.g. `readThree = read "3"; readThree :: Int --> 3`
+* getting the element and an index of a list uses the `!!` infix operator
+* Haskell seems to inconveniently default to Integers in a lot of cases where we want to use Ints
+* the `div` function can be used to drop decimals off of division results
+
 
 ## TODO
 
 * Make a calendar so we can cross off each day because that's the most satisfying part!
+* Figure out how to run a Haskell program with modules so we can take advantage of the file IO solution we came up with instead of parsing each input set.
+* Find out the answers to questions noted in each solution file.
 
