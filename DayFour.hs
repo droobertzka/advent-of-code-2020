@@ -63,6 +63,7 @@ validateFieldValue field =
       -- (when we do, the compiler warns of redundancy
       -- TODO: can we combine a let and a switch case here
       -- and then assign a validate func and then apply to `value` once?
+      -- TODO: perhaps a `where` instead of the `let/in` would work better?
       case key of
         "byr" -> validateBirthYr value
         "iyr" -> validateIssueYr value
