@@ -74,6 +74,16 @@ side
 * Haskell seems to inconveniently default to Integers in a lot of cases where we want to use Ints
 * the `div` function can be used to drop decimals off of division results
 
+### Day Three
+* we can qualify imports!
+	* e.g.: `import qualified Data.Text as T`, then reference methods like so: `T.splitOn`
+* we learned the basics of the `Data.Text` library
+* learned some handy dandy List methods like `elem`, `isSuffixOf`, and `words`
+* `case` statements seem to need to use literals
+	* we were getting compiler warnings of redundant cases which weren't
+	* we also weren't getting warned about non-exhaustive cases
+
+
 
 ## TODO
 
