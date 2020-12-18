@@ -1,6 +1,7 @@
 import Data.Maybe
 import Data.List
 import System.IO
+import Debug.Trace (traceShow)
 
 
 -- File IO
@@ -46,4 +47,16 @@ decodeSeat seat =
 
 partOne =
     fileIo "InputDayFive.txt" $ maximum . map decodeSeat
+
+
+-- Part Two
+
+findOurSeat possibleSeatIds actualSeatIds =
+    find (\seatId ->
+        notElem seatId actualSeatIds
+        && elem (seatId - 1) actualSeatIds
+        && elem (seatId + 1) actualSeatIds
+    ) possibleSeatIds
+
+partTwo = fileIo "InputDayFive.txt" $ findOurSeat [0..] . map decodeSeat
 
