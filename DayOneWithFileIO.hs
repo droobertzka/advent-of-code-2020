@@ -30,6 +30,6 @@ partOne (x:xs) =
             x * (fromJust match)
 
 main = do
-    fileIo "day-1.txt"  $ partOne . map (\x -> read x :: Int)
+    fileIo "DayOne.txt"  $ partOne . map (\x -> read x :: Int)
 
 
