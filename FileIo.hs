@@ -1,6 +1,9 @@
-import Data.Maybe
-import Data.List
+module FileIo
+    ( fileIo
+    ) where
+
 import System.IO
+
 
 fileIo filename findAnswer = do
     inh <- openFile filename ReadMode
@@ -15,21 +18,3 @@ mainloop inh list findAnswer = do
         else do
             nextLineIn <- hGetLine inh
             mainloop inh (list ++ [nextLineIn]) findAnswer
-
-findTwentyTwentySum x xs =
-    find ((== 2020) . (+ x)) xs
-
-partOne (x:xs) =
-    let match = findTwentyTwentySum x xs
-    in
-        if
-            isNothing match
-        then
-            partOne xs
-        else
-            x * (fromJust match)
-
-main = do
-    fileIo "DayOne.txt"  $ partOne . map (\x -> read x :: Int)
-
-
