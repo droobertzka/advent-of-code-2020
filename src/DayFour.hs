@@ -1,3 +1,5 @@
+module DayFour where
+
 import qualified Data.Text as T
 import qualified Data.List as L
 import FileIo (fileIo)
@@ -74,7 +76,7 @@ parseInputs = foldl parsePassport [""]
 solvePartOne xs =
     length $ filter hasRequiredFields $ parseInputs xs
 
-partOne = fileIo "InputDayFour.txt" solvePartOne
+partOne = fileIo "static/InputDayFour.txt" solvePartOne
 
 
 -- Part 2
@@ -112,7 +114,7 @@ solvePartTwo xs =
             (all validateFieldValue . words)
             passportsWithReqFields
 
-partTwo = fileIo "InputDayFour.txt" solvePartTwo
+partTwo = fileIo "static/InputDayFour.txt" solvePartTwo
 
 -- Input
 

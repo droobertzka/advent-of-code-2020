@@ -1,9 +1,12 @@
+module DayOne where
+
 import Data.Maybe
 import Data.List
 import FileIo (fileIo)
 
-solve solver = fileIo "InputDayOne.txt" $ solver . map
-    (\x -> read x :: Int)
+solve solver =
+    fileIo "static/InputDayOne.txt" $ solver . map
+        (\x -> read x :: Int)
 
 
 -- Part One

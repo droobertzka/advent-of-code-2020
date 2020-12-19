@@ -1,0 +1,42 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 7bf0bfd16afae6d5da35dd9b364d12ab49c1daf5fa3ddf76cd92998ec3fa931a
+
+name:           advent-of-code
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/droopert/advent-of-code-2020#readme>
+homepage:       https://github.com/droopert/advent-of-code-2020#readme
+bug-reports:    https://github.com/droopert/advent-of-code-2020/issues
+author:         droobertzka
+maintainer:     example@example.com
+copyright:      2020 droobertzka
+license:        BSD3
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/droopert/advent-of-code-2020
+
+library
+  exposed-modules:
+      DayFive
+      DayFour
+      DayOne
+      DayThree
+      DayTwo
+      FileIo
+  other-modules:
+      Paths_advent_of_code
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , split ==0.2.3.4
+    , text >=1.2.4.0 && <5
+  default-language: Haskell2010

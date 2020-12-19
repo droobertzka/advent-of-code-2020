@@ -1,3 +1,5 @@
+module DayTwo where
+
 import Data.List
 import Data.Maybe
 import FileIo (fileIo)
@@ -12,7 +14,7 @@ parseLine line =
     in (min, max, head charColon, head pw)
 
 solve solver =
-    fileIo "InputDayTwo.txt" $ solver . map parseLine
+    fileIo "static/InputDayTwo.txt" $ solver . map parseLine
 
 
 -- Part One

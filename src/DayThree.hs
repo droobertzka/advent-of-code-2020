@@ -1,3 +1,5 @@
+module DayThree where
+
 import FileIo (fileIo)
 
 
@@ -30,7 +32,7 @@ calcNumHashes (x, y) numHashes strings (slopeX, slopeY) =
 solvePartOne strings =
     calcNumHashes (0, 0) 0 strings (3, 1)
 
-partOne = fileIo "InputDayThree.txt" solvePartOne
+partOne = fileIo "static/InputDayThree.txt" solvePartOne
 
 
 -- Part 2
@@ -39,4 +41,4 @@ solvePartTwo strings = product $ map
     (calcNumHashes (0, 0) 0 strings)
     [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
 
-partTwo = fileIo "InputDayThree.txt" solvePartTwo
+partTwo = fileIo "static/InputDayThree.txt" solvePartTwo

@@ -3,13 +3,19 @@
 Solutions to the [Advent of Code 2020](https://github.com/droopert/advent-of-code-2020) challenges (in Haskell).
 
 
-## Completed
+## How To Run
 
-`X` marks part 1 and 2 complete. `/` marks part 1 complete.
+Steps to run (using Day 1 as example):
 
-* `X` - Day 1
-* `/` - Day 2
-* That's it so far. We got started late, so give us a break...
+```sh
+$ stack ghci src/DayOne.hs
+
+*DayOne> partOne
+"prints the answer to Day 1 Part 1"
+
+*DayOne> partTwo
+"prints the answer to Day 1 Part 2"
+```
 
 
 ## Stream Commands
@@ -102,6 +108,25 @@ side
 * `where` can be used much like a `case` statement, only we can have logic to check conditions in the cases
 * we learned what it's like to run into odd lazily evaluated infinite list situations
 	* we were `print`-ing one, and the GHCi was hanging and showing the beginning of the list like so `[528`
+
+### Day Five
+* we found a way to [split Lists (and Strings) by a predicate](https://hackage.haskell.org/package/split-0.2.3.4/docs/Data-List-Split.html#v:splitWhen)!
+	* `Data.List.Split.splitWhen :: (a -> Bool) -> [a] -> [[a]]`
+* you cannot import packages that aren't included in the GHC (e.g. `Data.List.Split`) from GHCi
+* Cabal is a package manager allowing us to publish packages (and publish packages?)
+	* to begin, `mkdir my-project && cd my-project && cabal init`
+	* Cabal is not as ergonomic as Stack! This is in terms of configuration, in CLI use, and documentation
+	* you **must** have license in your project's root in order to `cabal install`
+* Stack helps you create an environment for Haskell development including dependency management
+	* to begin, simply `stack new my-project`
+	* you can **not** have a number as part of your package name unless there is a letter adjacent to it (e.g. `package-1` is no good, but `package1` is fine)
+	* We learned how to install dependencies via the `package.yaml`
+	* Stack will create and manage your `my-project.cabal` file for you, which is much easier than doing it yourself (you have to list all your project's files!)
+* when using stack and `System.IO.openFile`, the file path **must** be relative to the project root
+	* e.g.: `static/InputDayOne.txt`
+* we can search [Hoogle] by type signature!
+	* e.g.: `[a] -> (a -> Bool) -> ([a], [a])` will come up with [span](https://hoogle.haskell.org/?hoogle=%5Ba%5D+-%3E+%28a+-%3E+Bool%29+-%3E+%28%5Ba%5D%2C+%5Ba%5D%29)
+among other results
 
 
 

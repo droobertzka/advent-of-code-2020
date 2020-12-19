@@ -1,3 +1,5 @@
+module DayFive where
+
 import FileIo (fileIo)
 import Data.List
 
@@ -35,7 +37,9 @@ decodeSeat seat =
     in id
 
 partOne =
-    fileIo "InputDayFive.txt" $ maximum . map decodeSeat
+    fileIo "static/InputDayFive.txt"
+        $ maximum
+        . map decodeSeat
 
 
 -- Part Two
@@ -49,6 +53,6 @@ findOurSeat possibleSeatIds actualSeatIds = find
     possibleSeatIds
 
 partTwo =
-    fileIo "InputDayFive.txt"
+    fileIo "static/InputDayFive.txt"
         $ findOurSeat [0 ..]
         . map decodeSeat
