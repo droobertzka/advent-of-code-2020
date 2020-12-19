@@ -124,7 +124,7 @@ side
 	* Stack will create and manage your `my-project.cabal` file for you, which is much easier than doing it yourself (you have to list all your project's files!)
 * when using stack and `System.IO.openFile`, the file path **must** be relative to the project root
 	* e.g.: `static/InputDayOne.txt`
-* we can search [Hoogle] by type signature!
+* we can search [Hoogle](https://hoogle.haskell.org) by type signature!
 	* e.g.: `[a] -> (a -> Bool) -> ([a], [a])` will come up with [span](https://hoogle.haskell.org/?hoogle=%5Ba%5D+-%3E+%28a+-%3E+Bool%29+-%3E+%28%5Ba%5D%2C+%5Ba%5D%29)
 among other results
 
