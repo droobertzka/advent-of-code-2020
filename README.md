@@ -83,6 +83,26 @@ side
 	* we were getting compiler warnings of redundant cases which weren't
 	* we also weren't getting warned about non-exhaustive cases
 
+### Day Four
+* we learned how fantastical it is to have the help of the [Haskell Language Server](https://github.com/alanz/haskell-language-server) in our IDE
+	* alternatively, we learned how silly it is to do development without a language server XD
+	* the HLS even teaches us tricks and tips on better syntax
+* when looking at Hackage, the version of `base` in the URL tells us the version of the `base` package that a package like [Data.List](https://hackage.haskell.org/package/base-4.14.0.0/docs/Data-List.html) is in
+* we learned how to tell what is available in Prelude and what isn't!
+	* look in your GHC version's [release notes](https://downloads.haskell.org/ghc/8.8.4/docs/html/users_guide/8.8.4-notes.html) and check package version numbers
+* we got modules working!! we think we just had the module declaration syntax wrong
+	* correct syntax is: `module MyModule (funcToExport) where`
+	* it's also noteable that **filename has to match module name**
+* some of the AoC problems can be solved with far less logic/code if we think through how to solve them a little more
+	* for example: Day 5 would benefit from changing char flags (`'F'`/`'B'`) into 1s and 0s so we could just add them up to find the highest seat ID
+* we were having issues with the type system while dividing with `/` and `div` did the trick
+	* this is the code we did it with: `div (length nums) 2`
+	* referentially, everything looked fine, even when checking types with `:t`
+* we got a tip from HLS to use `notElem` where we were using `not . elem` - neat!
+* `where` can be used much like a `case` statement, only we can have logic to check conditions in the cases
+* we learned what it's like to run into odd lazily evaluated infinite list situations
+	* we were `print`-ing one, and the GHCi was hanging and showing the beginning of the list like so `[528`
+
 
 
 ## TODO
