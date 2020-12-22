@@ -1,13 +1,14 @@
 module DaySeven where
 
 import FileIo (fileIo)
-import Data.List (isInfixOf)
-import Data.List.Split (split, onSublist, dropDelims)
+import Data.List (isInfixOf, find)
+import Data.List.Split (splitOn)
+import Data.Maybe (fromJust, isNothing)
 
 
 -- Part One
 
-parse = split (dropDelims $ onSublist " bags contain ")
+parse = splitOn " bags contain "
 
 getQualifiedBags bags = map head . filter
     (\(_ : value : _) -> any (`isInfixOf` value) bags)
@@ -34,26 +35,54 @@ partOne =
         . solvePartOne ["shiny gold"] []
         . map parse
 
--- Our Proposed Logic:
--- 1. parse the list of strings into ["bag", "rule rule rule"] parts
--- 2. loop over the parsed rules, look for the given bag, and make a list of
---    bags in the rules that can contain it (aka, they qualify)
--- 3. make a new list of rules that doesn't contain any bags that are already
---    in our list of bags that qualify
--- 4. with the new list of bags and the new (shortened) list of rules, find all
---    the bags that can contain any of those bags
---
---    PROBLEM in setp 2, we needed to keep a running list
---    of all the bags that have qualified, but we were just passing in the
---    next set of bags we found that can contain the current bag. This
---    was causing an infinite loop because every bag can be contained in
---    at least one other bag.
---
---    PROBLEM 2: we weren't differentiating bewteen bags we wanted to search
---    for and the list of qualified bags. 
---
---    PROBLEM 3: we weren't concatenating the qualified bags list each time, so
---    we ended up with a list with a length of less than 6.
---
---    NOTE: we were folding with our `reduce` function, but it was easier to
---    get the logic right with map + reeduce.
+
+-- Part Two
+
+parseNumberFromBag bag =
+    let
+        unparsedNumBags = takeWhile (/= ' ') bag
+        numberOfBags    = if unparsedNumBags == "no"
+            then 0
+            else read unparsedNumBags :: Int
+    in (numberOfBags, bag)
+
+parseContainedBags rule =
+    map parseNumberFromBag $ splitOn ", " rule
+
+
+partTwoParse rawRule =
+    let
+        (bagName : containedBags : _) =
+            splitOn " bags contain " rawRule
+        parsedContainedBags =
+            parseContainedBags containedBags
+    in (bagName, parsedContainedBags)
+
+
+findRule bag = find $ (`isInfixOf` bag) . fst
+
+type Rule = (String, [(Int, String)])
+
+partTwoLoop :: String -> [Int] -> [Rule] -> Int
+partTwoLoop bagName ns rules = if isNothing maybeRule
+    then 0
+    else
+        let
+            (bagName, containedBags) = fromJust maybeRule
+            accumulator =
+                product ns * sum (map fst containedBags)
+            recursedNums = map
+                (\(n, bagName') ->
+                    partTwoLoop bagName' (n : ns) rules
+                )
+                containedBags
+        in accumulator + sum recursedNums
+    where maybeRule = findRule bagName rules
+
+solvePartTwo rawRules = partTwoLoop
+    "shiny gold"
+    [1]
+    parsedRules
+    where parsedRules = map partTwoParse rawRules
+
+partTwo = fileIo "static/InputDaySeven.txt" solvePartTwo
