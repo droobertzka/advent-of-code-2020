@@ -128,7 +128,17 @@ side
 	* e.g.: `[a] -> (a -> Bool) -> ([a], [a])` will come up with [span](https://hoogle.haskell.org/?hoogle=%5Ba%5D+-%3E+%28a+-%3E+Bool%29+-%3E+%28%5Ba%5D%2C+%5Ba%5D%29)
 among other results
 
+### Day Six
 
+Day 6 (on the advent calendar) part 1 and 2 went pretty quick and smooth, so all the hard work and following rabbit holes is starting to pay off!
+
+* we deeply explored the differences between compose (`.`) and pipe (`$`) and resolved these 2 common stubmling blocks:
+	* it is easy to read left-to-right and forget that function application takes precedence over pipe and compose
+	* it is tempting to use pipe in a function definition that does not explicitly define all its arguments, but it results in a partially applied function getting passed to some other function which is probably expecting some data. E.g.:
+            * **Doesn't work**: `incThenConcat = (++) $ map (+1)`
+            * `-> Couldn't match expected type ‘[a]’ with actual type ‘[Integer] -> [Integer]’`
+            * `-> Probable cause: ‘map’ is applied to too few arguments`
+            * **Works**: `incThenConcat = (++) . map (+1)`
 
 ## TODO
 
