@@ -140,6 +140,14 @@ Day 6 (on the advent calendar) part 1 and 2 went pretty quick and smooth, so all
             * `-> Probable cause: ‘map’ is applied to too few arguments`
             * **Works**: `incThenConcat = (++) . map (+1)`
 
+### Day Seven
+
+* `Data.List.Split.splitOn` is a very handy shorthand for splitting a string on a substring and throwing away the delimiter
+	* e.g.: `splitOn ", " "foo, bar, baz" == ["foo", "bar", "baz"]`
+* we also learned `Data.List.span` and `Data.List.isInfixOf`, which are both very handy
+* we used our first custom `type` it wasn't really necessary, but it cleaned up a type signature and made it easier to reason about
+* we successfully used where in a couple cases where it helped keep the code more readable
+
 ## TODO
 
 * Make a calendar so we can cross off each day because that's the most satisfying part!
