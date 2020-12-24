@@ -148,6 +148,24 @@ Day 6 (on the advent calendar) part 1 and 2 went pretty quick and smooth, so all
 * we used our first custom `type` it wasn't really necessary, but it cleaned up a type signature and made it easier to reason about
 * we successfully used where in a couple cases where it helped keep the code more readable
 
+### Day Eight
+
+* we learned how much better we do in the morning with a fresh mind
+* we learned the value of just using a library instead of rolling our own versions of utility functions
+	* see: time wasted on bug in `replaceElement` instead of using `Control.Lens`'s `.~`
+* the compiler is OK with non-exhaustive pattern matching
+	* there is an option for enable it as a warning or error
+	* there is also a -Wall option for enabling all warnings
+* it's extremely important to be careful about order of everything you do inside a loop
+	* if not ordered properly, it becomes harder to reason about and you may run the loop once more than intended
+* `init` is the opposite of `tail`
+* there are a couple other linters/formatters we learned about:
+	* [fourmolu](https://github.com/parsonsmatt/fourmolu)
+	* [ormolu](https://github.com/tweag/ormolu)
+* we learned some more `cabal` basics
+* learned about scaffolding with `stack`
+
+
 ## TODO
 
 * Make a calendar so we can cross off each day because that's the most satisfying part!
