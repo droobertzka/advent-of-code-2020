@@ -165,6 +165,16 @@ Day 6 (on the advent calendar) part 1 and 2 went pretty quick and smooth, so all
 * we learned some more `cabal` basics
 * learned about scaffolding with `stack`
 
+### Day Nine
+
+* we learned the formula for calculating unique ways to combine elements in a list
+	* `nCk = n!/((n - k)! * k!)`
+* we learned about `subsequence` which creates all unique sets from a given list
+* we can overload functions based on length of lists passed in via `[_,_]` in our argument definition (as opposed to `(x:xs)`
+* `wordsBy` is a great list util for splitting a list into chunks
+* we finally learned how to use guards (i.e. `|`) in `where` clauses
+	* also that the `otherwise` at the end of guards is a reserved keyword
+
 
 ## TODO
 
