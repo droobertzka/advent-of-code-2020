@@ -49,25 +49,21 @@ getDiffs ns =
         ++ [lastNum]
     where lastNum = maximum ns + 3
 
-factorial n = if n == 1 then n else n * factorial (n - 1)
+formula n = formula' (n - 1) [4, 2, 1]
 
-formula :: Int -> Int
-formula listLength =
-    factorial listLength
-        `div` (factorial (listLength - 2) * 2)
+formula' :: Int -> [Int] -> Int
+formula' count currentList
+    | count == 0
+    = last currentList
+    | otherwise
+    = formula' (count - 1) $ next : init currentList
+    where next = sum currentList
 
 calcArrangements :: [a] -> Int
-calcArrangements [_]    = 0
-calcArrangements [_, _] = 2
-calcArrangements xs     = formula (length xs) + 1
--- TODO: why didn't this work? Compiler says we have
--- equations with different numbers of arguments, but
--- they all take in one list.
--- calcArrangements = (+ 1) . formula . length
+calcArrangements xs = formula $ length xs
 
 solvePartTwo =
     product
-        . filter (/= 0)
         . map calcArrangements
         . wordsBy (/= 1)
         . getDiffs
