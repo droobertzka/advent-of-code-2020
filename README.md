@@ -175,6 +175,22 @@ Day 6 (on the advent calendar) part 1 and 2 went pretty quick and smooth, so all
 * we finally learned how to use guards (i.e. `|`) in `where` clauses
 	* also that the `otherwise` at the end of guards is a reserved keyword
 
+### Day Ten
+
+* when pattern matching with multiple function definitions, order matters
+* we explored 3 ways to pattern match:
+	* **function overloading:** good to use when you want completely different function bodies or if the match and return values are simple
+	* **`where` clauses:** good when logic for conditions is more complex, but must evaluate to a `Bool`, so not as good for simply matching equality or type
+	* **switch cases:** good for when conditions are equality or type, but can't be used for more complex logic in conditions
+* we got somewhat familiar with Data.Map from containers library
+	* we can compare Maps with `==`
+	* almost every operation in Data.Map is _O(n)_ or worse
+* using backticks to turn a function into an infix is a quick way to `flip` a binary function
+* when defining custom data types, we can easily get `show` and `==` with `deriving (Show, Eq)`
+* if our data is shaped too differently from the input, it can make things hard to debug
+* `jq` is a handy tool for dealing with `JSON` in bash
+	* another useful way is via `node -e "console.log(require('foo.json').bar)"`
+
 
 ## TODO
 
