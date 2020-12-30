@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8c3d52a391ebb3a9ce21a6f165ccff9291956556906d53f0fee291a653781482
+-- hash: 4c34137dea8945f27d8c819be843e4af89cf7dbca03cc15bd5d62d3fab4c41be
 
 name:           advent-of-code
 version:        0.1.0.0
@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       DayEight
+      DayEleven
       DayFive
       DayFour
       DayNine
@@ -42,6 +43,7 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , containers >=0.6.2.1 && <9
     , split ==0.2.3.4
     , text >=1.2.4.0 && <5
   default-language: Haskell2010
