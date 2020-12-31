@@ -191,6 +191,23 @@ Day 6 (on the advent calendar) part 1 and 2 went pretty quick and smooth, so all
 * `jq` is a handy tool for dealing with `JSON` in bash
 	* another useful way is via `node -e "console.log(require('foo.json').bar)"`
 
+### Day Eleven
+
+* Haskell has mutable data structures--whaaaaat?
+	* e.g.: [Data.Vector.Mutable](https://hackage.haskell.org/package/vector-0.12.1.2/docs/Data-Vector-Mutable.html)
+* type synonyms allow us to reuse a function type signature (similar to an interface)
+	* simply: `type MySignature = String -> Int -> Char`
+* `Data.Bifunctor.bimap` is a great way to apply two functions to the two parts of a tuple (or other data structures with 2 elements)
+	* e.g.: `bimap (+ 1) (+ 2) (3, 8) == (4, 10)`
+* `uncurry` is handy for binary applying functions to tuples
+	* e.g.: `map (uncurry (+)) [(1, 2), (2, 3), (3, 4)] == [6, 9]`
+* we can save files in Vim to another filename via `:w NewFileName`
+* we learned how to use `data` types with getters which greatly cleaned up our code
+	* we also learned how to destructure them nicely without needing the getters (e.g. `(Position shipCoords wpCoords)`)
+* `iterate` is a great tool for applying a function to some data recursively, N times
+	* it creates an infinite list, and then you can access the Nth element (e.g.: `iterate (+ 1) 0 !! 8 == 8`)
+* [Yesod](https://www.yesodweb.com/) is a Haskell framework for creating back end web applications. Neat!
+
 
 ## TODO
 
