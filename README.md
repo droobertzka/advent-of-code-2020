@@ -208,10 +208,28 @@ Day 6 (on the advent calendar) part 1 and 2 went pretty quick and smooth, so all
 	* it creates an infinite list, and then you can access the Nth element (e.g.: `iterate (+ 1) 0 !! 8 == 8`)
 * [Yesod](https://www.yesodweb.com/) is a Haskell framework for creating back end web applications. Neat!
 
+### Day Twelve
+
+* Chinese Remainder Theorem and modulus and all sorts of mathy goodness!
+
+### Day Thirteen
+
+* `screen`
+* sweng is slang for **s**oft**w**are **eng**ineering -- yep, didn't know that
+* `Data.Bits`, `Control.Monad`, and `Data.Char` are all available in the `base` lib
+* `Data.Bits` has handy utility functions like `setBit` and `clearBit`
+* `zipWith` - we should probably be using this more; it is awesome
+
+### Day Fourteen
+
+* `divRem`, `quotRem`
+* putting guards _after_ a `where` allows us to define named functions within functions
+	* the convention is to use the name `go`
+* we learned the high-level difference between PureScript and Elm
+* `curry` can convert a function that takes a tuple into a curried function
+
 
 ## TODO
 
-* Make a calendar so we can cross off each day because that's the most satisfying part!
-* Figure out how to run a Haskell program with modules so we can take advantage of the file IO solution we came up with instead of parsing each input set.
 * Find out the answers to questions noted in each solution file.
 
