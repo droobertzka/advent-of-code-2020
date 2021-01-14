@@ -3,6 +3,7 @@ module DayThirteen
     , partTwo
     ) where
 
+import Debug.Trace
 import Data.List.Split (splitOn)
 import Data.List
 import Data.Maybe (fromJust)
@@ -38,16 +39,21 @@ partOne = fileIo
 
 type ModEq = Int -> Bool
 
+getRemainder n i
+    | i == 0    = 0
+    | n - i > 0 = n - i
+    | otherwise = n - (i `mod` n)
+
 makeEq :: (Int, [ModEq]) -> String -> (Int, [ModEq])
 makeEq (i, modEqs) str =
     let
-        i'          = i + 1
-        n           = parse str
-        shouldEqual = if i' == 0 then 0 else n - i'
+        i'    = i + 1
+        n     = parse str
+        modEq = \x -> x `mod` n == getRemainder n i'
     in if str == "x"
         then (i', modEqs)
-        else
-            (i', modEqs ++ [\x -> x `mod` n == shouldEqual])
+        else (i', modEqs ++ [modEq])
+
 
 attempt :: Int -> [ModEq] -> Int
 attempt n eqs =
