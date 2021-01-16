@@ -39,23 +39,31 @@ partOne = fileIo
 
 type ModEq = Int -> Bool
 
-getRemainder n i
-    | i == 0    = 0
-    | n - i > 0 = n - i
-    | otherwise = n - (i `mod` n)
+makeEq offset (n, i) x = (x + i - offset) `mod` n == 0
 
---makeEq (n, i) x = x `mod` n == getRemainder n i
-
+{-
 -- Debugging
-makeEq :: (Int, Int) -> String
-makeEq (n, i) = "x = x `mod` " ++ show n ++ " == " ++ show
-    (getRemainder n i)
+makeEq offset (n, i) =
+    "(x + "
+        ++ show (i - offset)
+        ++ ") `mod` "
+        ++ show n
+        ++ " == 0"
+-}
 
---makeEqs :: [(Int, Int)] -> [String] -> (Int, [ModEq])
+makeEqs :: [(Int, Int)] -> [String] -> (Int, Int, [ModEq])
 makeEqs pairs strs
-    | null strs = (fst $ head pairs, map makeEq pairs)
-    | last strs == "x" = makeEqs pairs $ init strs
-    | otherwise = makeEqs ((n, i) : pairs) $ init strs
+    | null strs
+    = let mxPair = maximum pairs
+      in
+          ( fst mxPair
+          , snd mxPair
+          , map (makeEq $ snd mxPair) pairs
+          )
+    | last strs == "x"
+    = makeEqs pairs $ init strs
+    | otherwise
+    = makeEqs ((n, i) : pairs) $ init strs
     where (n, i) = (parse $ last strs, length strs - 1)
 
 attempt :: Int -> Int -> [ModEq] -> Int
@@ -63,11 +71,12 @@ attempt first n eqs = if all (\eq -> eq n) eqs
     then n
     else attempt first (n + first) eqs
 
---solvePartTwo :: Int -> [String] -> Int
-solvePartTwo n raws = --attempt first (n - n `mod` first) eqs
-                      (first, eqs)
+solvePartTwo :: Int -> [String] -> Int
+solvePartTwo n raws =
+    attempt max (n - n `mod` max) eqs - offset
   where
-    (first, eqs) = makeEqs [] (splitOn "," $ last raws)
+    (max, offset, eqs) =
+        makeEqs [] (splitOn "," $ last raws)
 
 partTwo =
     fileIo
