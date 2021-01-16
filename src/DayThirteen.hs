@@ -44,28 +44,30 @@ getRemainder n i
     | n - i > 0 = n - i
     | otherwise = n - (i `mod` n)
 
-makeEq :: (Int, [ModEq]) -> String -> (Int, [ModEq])
-makeEq (i, modEqs) str =
-    let
-        i'    = i + 1
-        n     = parse str
-        modEq = \x -> x `mod` n == getRemainder n i'
-    in if str == "x"
-        then (i', modEqs)
-        else (i', modEqs ++ [modEq])
+--makeEq (n, i) x = x `mod` n == getRemainder n i
 
+-- Debugging
+makeEq :: (Int, Int) -> String
+makeEq (n, i) = "x = x `mod` " ++ show n ++ " == " ++ show
+    (getRemainder n i)
 
-attempt :: Int -> [ModEq] -> Int
-attempt n eqs =
-    if all (\eq -> eq n) eqs then n else attempt (n + 1) eqs
+--makeEqs :: [(Int, Int)] -> [String] -> (Int, [ModEq])
+makeEqs pairs strs
+    | null strs = (fst $ head pairs, map makeEq pairs)
+    | last strs == "x" = makeEqs pairs $ init strs
+    | otherwise = makeEqs ((n, i) : pairs) $ init strs
+    where (n, i) = (parse $ last strs, length strs - 1)
 
-solvePartTwo :: Int -> [String] -> Int
-solvePartTwo n raws = attempt n eqs
+attempt :: Int -> Int -> [ModEq] -> Int
+attempt first n eqs = if all (\eq -> eq n) eqs
+    then n
+    else attempt first (n + first) eqs
+
+--solvePartTwo :: Int -> [String] -> Int
+solvePartTwo n raws = --attempt first (n - n `mod` first) eqs
+                      (first, eqs)
   where
-    eqs = snd $ foldl
-        makeEq
-        (-1, [])
-        (splitOn "," $ last raws)
+    (first, eqs) = makeEqs [] (splitOn "," $ last raws)
 
 partTwo =
     fileIo
