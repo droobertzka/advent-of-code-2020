@@ -228,6 +228,17 @@ Day 6 (on the advent calendar) part 1 and 2 went pretty quick and smooth, so all
 * we learned the high-level difference between PureScript and Elm
 * `curry` can convert a function that takes a tuple into a curried function
 
+### Day Fifteen
+
+* we can pass `-O2` into the `ghc` to get some additional optimization (?)
+	* we followed this advice blindly, so we should do further research re: how/why
+* guards can be used _without_ a `where` - nice!
+* `do` is the same as `fmap`
+* `<>` is like concatenate, but for more than lists
+* `>>=` is like `concatMap`, but takes the list first, then the function to map
+* `join . take 1` is a good trick for getting the head from a list without
+  having to guard against the list being empty (which head will error on)
+
 
 ## TODO
 
