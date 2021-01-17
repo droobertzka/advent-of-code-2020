@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3f8b8be9d4222d47fe99e25783fd8b1ce1e36026a7f474204fdbd770a82d7d80
+-- hash: 0ff57bf8e447b94369e2f1b6b2c6c98a79fce96ca757d4740080f44f105cb0a2
 
 name:           advent-of-code
 version:        0.1.0.0
@@ -57,7 +57,7 @@ executable advent-of-code-exe
       Paths_advent_of_code
   hs-source-dirs:
       app
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -O2
   build-depends:
       advent-of-code
     , base >=4.7 && <5
